@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Abstract Sign Up Form - Day 2 - 100 DAYS - 2020</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
+
+  <script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="contact-us">
+  <img src="logo.png" alt="" style="height: 400px; width: 400px; text-align: center;">
+  <h1 style="margin-bottom: 30px; margin-top: -15px;">Q & A</h1>
+  <form method="post" autocomplete="off" name="hello-sheet">
+    
+    <input  placeholder="เขียนอะไรหน่อยสิ" required="" type="text" name="เขียนอะไรหน่อยสิ" />
+    
+    <button >ส่งข้อความ</button>
+  </form>
+</div>
+
+
+
+
+
+<script>
+  const scriptURL = 'xxx'
+  const form = document.forms['hello-sheet']
+
+  form.addEventListener('submit', e => {
+      
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'center',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  Toast.fire({
+    icon: 'question',
+    title: 'กดทำไมมันยังไม่เสร็จ'
+  })
+          
+  })
+
+  
+  
+  
+  
+</script>
+
+  
+  
+  
+  
+</script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+</body>
+</html>
