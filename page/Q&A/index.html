@@ -2,7 +2,10 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>pakphueterr_Q&A</title>
+
+  <link rel="icon" type="image/png" href="logo.png"/>
+
+  <title>Pakphueterr_Q&A</title>
   <link rel="stylesheet" href="./style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +16,7 @@
 <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
+
 <div class="contact-us">
   <img src="logo.png" alt="" style="height: 400px; width: 400px; text-align: center;">
   <h1 style="margin-bottom: 30px; margin-top: -15px;">Q & A</h1>
@@ -21,7 +24,8 @@
     
     <input  placeholder="เขียนอะไรหน่อยสิ" required="" type="text" name="เขียนอะไรหน่อยสิ" />
     
-    <button >ส่งข้อความ</button>
+    <button type="D" name="D" value="Send message" class="btn btn-primary">ส่งข้อความ</button>
+   
   </form>
 </div>
 
@@ -30,35 +34,78 @@
 
 
 <script>
-  const scriptURL = 'xxx'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx0S6_EWRhIe376yqm9es27QIBhFfiTdIq8aM72sepsvP9if-uUHnikzwRlC5OHyd0/exec'
   const form = document.forms['hello-sheet']
 
-  form.addEventListener('submit', e => {
+    form.addEventListener('submit', e => {
+        
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    
+      const Toast = Swal.mixin({
+      toast: true,
+      position: 'center',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        setTimeout(() => {
+					const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+          })
+
+          swalWithBootstrapButtons.fire({
+            title: 'การบันทึกข้อมูลเสร็จสิ้น',
+            text: "ไปไหนดีน้าา!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'อยู่หน้านี้ต่อ',
+            cancelButtonText: 'กลับไปหน้า instagram',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+              swalWithBootstrapButtons.fire(
+                'กำลังเปลี่ยนเส้นทาง!',
+                'ถามไรต่อดีน้าา.',
+                'success'
+                
+              )
+              setTimeout(() => {
+                window.location.href = "index.html";;
+              }, 3000);
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'กำลังเปลี่ยนเส้นทาง',
+                'ไว้เจอกันใหม่งับ',
+                'success'
+              )
+              setTimeout(() => {
+                window.location.href = "https://www.instagram.com/pakphueterr/";;
+              }, 3000);
+              
+            }
+          })
+				}, 1000);
+      }
       
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    const Toast = Swal.mixin({
-    toast: true,
-    position: 'center',
-    showConfirmButton: false,
-    timer: 5000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
+    })
 
-  Toast.fire({
-    icon: 'question',
-    title: 'กดทำไมมันยังไม่เสร็จ'
-  })
-          
-  })
+    Toast.fire({
+      icon: 'success',
+      title: 'การส่งข้อความสำเร็จ'
+    }) 
+    })
+  
 
-  
-  
-  
   
 </script>
 
