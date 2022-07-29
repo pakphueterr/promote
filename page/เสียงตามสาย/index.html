@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pakphueterr_BSRU</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/logo.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--========================================================app=======================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/logo.png" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form" name="hello-sheet">
+					<span class="login100-form-title">
+						เสียงตามสาย
+					</span>
+					
+
+					<div class="wrap-input100 validate-input" data-validate = "ชื่อของน้อง">
+						<input class="input100" type="text" name="ชื่อของน้อง" placeholder="ชื่อของน้อง (จำเป็น)" required="ชื่อของน้อง" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "ชื่อเพลง">
+						<input class="input100" type="text" name="ชื่อเพลง" placeholder="ชื่อเพลง (จำเป็น)" required="ชื่อเพลง" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-music" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "ข้อความที่ฝากถึงพี่ๆ">
+						<input class="input100" type="text" name="ข้อความที่ฝากถึงพี่ๆ" placeholder="ข้อความที่ฝากถึงพี่ๆ">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							ส่งคำขอ
+						</button>
+					</div>
+
+					
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							ขอสงวนสิทธิ์ไม่เปิดเพลงที่มีเนื้อหาสื่อไปทาง เพศ , ความรุนแรง , และพฤติกรรมอื่นๆที่ไม่เหมาะสม <p>status : <a href="#" style="color:green;">Online</a></p>
+						</span>
+						<span class="txt1">
+							
+						</span>
+						
+					</div>
+
+					<div class="text-center p-t-100">
+						<i class="fa fa-instagram" aria-hidden="true"></i>
+						<a class="txt2" href="https://www.instagram.com/pakphueterr/">
+							Pakphueterr_BSRU
+						</a>
+						<a class="txt1" href="https://www.instagram.com/pakphueterr/">
+							by TIK XD
+						</a>
+					</div>
+					<div class="text-center p-t-10">
+						
+						<a class="txt2" href="https://docs.google.com/spreadsheets/d/1B3rqScirS7TlxYNbaJJ1EdNw5hNCI6cDp5_JdB_eB0c/edit?usp=sharing">
+							Deverlope login
+						</a>
+						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycby390PoFlGUpRY6ErwGyPYx_5bCL1wp3LDi2IlVTQYDCvh9-Bxy8UBW_5ecKFwUizmqcw/exec'
+		const form = document.forms['hello-sheet']
+	  
+
+		form.addEventListener('submit', e => {
+			e.preventDefault()
+		  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+			const Toast = Swal.mixin({
+			toast: true,
+			position: 'top',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+				setTimeout(() => {
+					let timerInterval
+					Swal.fire({
+					title: 'ส่งไปหน้าขอเพลง',
+					html: 'I will close in 3 second.',
+					timer: 3000,
+					timerProgressBar: true,
+					didOpen: () => {
+						Swal.showLoading()
+					},
+					willClose: () => {
+						clearInterval(timerInterval)
+					}
+					}).then((result) => {
+					/* Read more about handling dismissals below */
+					if (result.dismiss === Swal.DismissReason.timer) {
+						console.log('I was closed by the timer')
+					}
+					})
+					setTimeout(() => {
+						window.location.href = "index.html";;
+					}, 3000);
+				}, 3000);
+			}
+			})
+
+			Toast.fire({
+			icon: 'success',
+			title: 'บันทึกข้อมูลเรียบร้อยแล้ว..'
+			})
+			require('./runthis.js')
+			
+		})
+	  </script>
+
+	  
+
+	  
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
